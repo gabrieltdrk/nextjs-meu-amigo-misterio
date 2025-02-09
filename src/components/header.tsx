@@ -12,7 +12,6 @@ export function Header() {
                         <Link href="/" className="text-2xl font-bold flex items-center gap-2">
                             <Gift className="h-6 w-6 text-red-400" />
                             <span>Amigo Secreto</span>
-                            <span className="font-thin">Secreto</span>
                         </Link>
                         <span className="border border-black h-8 select-none" />
                         <nav className="flex items-center gap-4">
@@ -20,7 +19,7 @@ export function Header() {
                                 <Link href="/grupos">Meus Grupos</Link>
                             </Button>
                             <Button asChild className="variant bg-gray-800 rounded-sm hover:bg-gray-600" >
-                                <Link href="/grupos">Novo grupo</Link>
+                                <Link href="/grupos/novo">Novo grupo</Link>
                             </Button>
                         </nav>
 
