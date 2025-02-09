@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Header } from "@/components/header";
 
 export const metadata: Metadata = {
   title: "Amigo Secreto",
@@ -11,11 +12,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
-    <html lang="en">
-      <body
-        className={``}
-      >
+    <html lang="pt-br">
+      <body className="bg-gray-50">
+        <Header />
         {children}
       </body>
     </html>

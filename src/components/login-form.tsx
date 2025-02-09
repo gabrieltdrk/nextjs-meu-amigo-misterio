@@ -9,7 +9,6 @@ import { login, LoginState } from "@/app/(auth)/login/actions";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
 import { Loader, MessageCircle } from "lucide-react";
 
-
 export function LoginForm() {
     const [state, formAction, pending] = useActionState<LoginState, FormData>(
         login,
