@@ -1,12 +1,14 @@
 'use client'
 
-import { useState } from "react"
+import { useActionState, useEffect, useState } from "react"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./ui/card"
 import { Label } from "./ui/label"
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
-import { Mail, Trash2 } from "lucide-react"
+import { Loader, Mail, Trash2 } from "lucide-react"
 import { Separator } from "./ui/separator"
+import { CreateGroup, CreateGroupState } from "@/app/groups/new/action"
+import { useToast } from "@/hooks/use-toast"
 
 interface Participant {
     name: string,
@@ -14,10 +16,16 @@ interface Participant {
 }
 
 export function NewGroupForm({ loggedUser }: { loggedUser: { id: string, email: string } }) {
+    const { toast } = useToast();
     const [participants, setParticipants] = useState<Participant[]>([
         { name: '', email: loggedUser.email }
     ])
     const [groupName, setGroupName] = useState<string>("")
+
+    const [state, formAction, pending] = useActionState<CreateGroupState, FormData>(CreateGroup, {
+        success: null,
+        message: ""
+    })
 
     function updateParticipant(index: number, field: keyof Participant, value: string) {
         const updatedParticipants = [...participants];
@@ -35,13 +43,22 @@ export function NewGroupForm({ loggedUser }: { loggedUser: { id: string, email: 
         setParticipants(participants.concat({ name: "", email: "" }))
     }
 
+    useEffect(() => {
+        if (state.success === false) {
+            toast({
+                variant: "destructive",
+                description: state.message
+            })
+        }
+    }, [state])
+
     return (
         <Card className="w-full max-w-2xl mx-auto">
             <CardHeader>
                 <CardTitle>New Group</CardTitle>
                 <CardDescription>Invite your friends to join!</CardDescription>
             </CardHeader>
-            <form action={() => { }}>
+            <form action={formAction}>
                 <CardContent className="space-y-4">
                     <div className="space-y-2">
                         <Label htmlFor="group-name">Group Name</Label>
@@ -61,7 +78,7 @@ export function NewGroupForm({ loggedUser }: { loggedUser: { id: string, email: 
                         <div key={index} className="flex flex-col md:flex-row items-end space-y-4 md:space-y-0 md:space-x-4">
                             <div className="flex-grow space-y-2 w-full">
                                 <Label htmlFor={`name-${index}`}>Name</Label>
-                                <Input id={`name-${index}`} name="name" value={participant.name} placeholder="Digite o nome do amigo..." required onChange={(e) => {
+                                <Input id={`name-${index}`} name="name" value={participant.name} placeholder="Enter the friend name..." required onChange={(e) => {
                                     updateParticipant(index, "name", e.target.value)
                                 }} />
                             </div>
@@ -93,11 +110,12 @@ export function NewGroupForm({ loggedUser }: { loggedUser: { id: string, email: 
                 <Separator className="my-4" />
                 <CardFooter className="flex flex-col md:flex-row justify-between space-y-4 md:space-y-0">
                     <Button type="button" variant="outline" onClick={addParticipant} className="w-full md:w-auto">
-                        Adicionar amigo
+                        Add new friend
                     </Button>
                     <Button className="flex items-center space-x-2 w-full md:w-auto">
                         <Mail className="w-3 h-3" />
                         Create group and send emails!
+                        {pending && <Loader className="animate-spin" />}
                     </Button>
                 </CardFooter>
             </form>

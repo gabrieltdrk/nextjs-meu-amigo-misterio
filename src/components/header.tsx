@@ -12,20 +12,21 @@ export function Header() {
                         <Link href="/" className="text-2xl font-bold flex items-center gap-2">
                             <Gift className="h-6 w-6 text-red-400" />
                             <span>Secret Santa</span>
+                            <span className="text-sm">@gabrieltdrk</span>
                         </Link>
                         <span className="border border-black h-8 select-none" />
                         <nav className="flex items-center gap-4">
                             <Button asChild className="variant bg-gray-800 rounded-sm hover:bg-gray-600" >
-                                <Link href="/grupos">My Groups</Link>
+                                <Link href="/groups">My Groups</Link>
                             </Button>
                             <Button asChild className="variant bg-gray-800 rounded-sm hover:bg-gray-600" >
-                                <Link href="/grupos/novo">New Group</Link>
+                                <Link href="/groups/new">New Group</Link>
                             </Button>
                         </nav>
 
                     </div>
                     <nav>
-                        <Button onClick={signOut} className="variant bg-gray-800 rounded-sm hover:bg-gray-600">Sair</Button>
+                        <Button onClick={signOut} className="variant bg-gray-800 rounded-sm hover:bg-gray-600">Log Out</Button>
                     </nav>
 
                 </div>

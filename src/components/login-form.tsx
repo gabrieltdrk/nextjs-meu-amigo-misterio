@@ -31,13 +31,13 @@ export function LoginForm() {
                     <div className="grid gap-4">
                         <div className="grid gap-2">
                             <Label htmlFor="email">Email</Label>
-                            <Input id="email" type="email" name="email" placeholder="Digite aqui o seu e-mail." required></Input>
+                            <Input id="email" type="email" name="email" placeholder="Enter your email..." required></Input>
 
                         </div>
 
                         {state.success === true && (
                             <Alert className="flex flex-col items-center">
-                                <AlertTitle className="text-green-600">E-mail enviado!</AlertTitle>
+                                <AlertTitle className="text-green-600">Email sent!</AlertTitle>
                                 <AlertDescription>Check your inbox to access it.</AlertDescription>
                             </Alert>
                         )}
@@ -45,7 +45,7 @@ export function LoginForm() {
                         {state.success === false && (
                             <Alert className="flex flex-col items-center">
                                 <AlertTitle className="text-red-600">E-mail não enviado!</AlertTitle>
-                                <AlertDescription>Por favor, entre em contato com o suporte.</AlertDescription>
+                                <AlertDescription>Please contact support.</AlertDescription>
                             </Alert>
                         )}
 

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/header";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Secret Santa",
@@ -18,6 +19,7 @@ export default function RootLayout({
       <body className="bg-gray-50">
         <Header />
         {children}
+        <Toaster />
       </body>
     </html>
   );
