@@ -38,19 +38,20 @@ export function NewGroupForm({ loggedUser }: { loggedUser: { id: string, email: 
     return (
         <Card className="w-full max-w-2xl mx-auto">
             <CardHeader>
-                <CardTitle>Novo Grupo</CardTitle>
-                <CardDescription>Convide os seus amigos para participar!</CardDescription>
+                <CardTitle>New Group</CardTitle>
+                <CardDescription>Invite your friends to join!</CardDescription>
             </CardHeader>
             <form action={() => { }}>
                 <CardContent className="space-y-4">
                     <div className="space-y-2">
-                        <Label htmlFor="group-name">Nome do Grupo</Label>
+                        <Label htmlFor="group-name">Group Name</Label>
                         <Input
                             id="group-name"
                             name="group-name"
                             value={groupName}
                             onChange={(e) => setGroupName(e.target.value)}
-                            placeholder="Digite o nome do grupo..."
+                            placeholder="Enter the group name...
+"
                             required
                         />
                     </div>
@@ -59,19 +60,19 @@ export function NewGroupForm({ loggedUser }: { loggedUser: { id: string, email: 
                     {participants.map((participant, index) => (
                         <div key={index} className="flex flex-col md:flex-row items-end space-y-4 md:space-y-0 md:space-x-4">
                             <div className="flex-grow space-y-2 w-full">
-                                <Label htmlFor={`name-${index}`}>Nome</Label>
+                                <Label htmlFor={`name-${index}`}>Name</Label>
                                 <Input id={`name-${index}`} name="name" value={participant.name} placeholder="Digite o nome do amigo..." required onChange={(e) => {
                                     updateParticipant(index, "name", e.target.value)
                                 }} />
                             </div>
                             <div className="flex-grow space-y-2 w-full">
-                                <Label htmlFor={`email-${index}`}>E-mail</Label>
+                                <Label htmlFor={`email-${index}`}>Email</Label>
                                 <Input
                                     id={`email-${index}`}
                                     name="email"
                                     value={participant.email}
                                     type="email"
-                                    placeholder="Digite o e-mail do amigo..."
+                                    placeholder="Enter your friend's email..."
                                     required
                                     disabled={participant.email === loggedUser.email}
                                     // readOnly={participant.email === loggedUser.email} 
@@ -96,7 +97,7 @@ export function NewGroupForm({ loggedUser }: { loggedUser: { id: string, email: 
                     </Button>
                     <Button className="flex items-center space-x-2 w-full md:w-auto">
                         <Mail className="w-3 h-3" />
-                        Criar grupo e enviar e-mails
+                        Create group and send emails!
                     </Button>
                 </CardFooter>
             </form>

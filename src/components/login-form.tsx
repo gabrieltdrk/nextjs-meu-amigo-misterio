@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/
 import { useActionState } from "react";
 import { login, LoginState } from "@/app/(auth)/login/actions";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
-import { Loader, MessageCircle } from "lucide-react";
+import { Loader } from "lucide-react";
 
 export function LoginForm() {
     const [state, formAction, pending] = useActionState<LoginState, FormData>(
@@ -23,7 +23,7 @@ export function LoginForm() {
             <CardHeader>
                 <CardTitle className="text-2xl text-center"> Login </CardTitle>
                 <CardDescription className="">
-                    Você receberá em seu e-mail, um link para realizar o login em nossa plataforma.
+                You will receive a link in your email to log in to our platform.
                 </CardDescription>
             </CardHeader>
             <CardContent>
@@ -38,7 +38,7 @@ export function LoginForm() {
                         {state.success === true && (
                             <Alert className="flex flex-col items-center">
                                 <AlertTitle className="text-green-600">E-mail enviado!</AlertTitle>
-                                <AlertDescription>Confira a sua caixa de entrada para acessar.</AlertDescription>
+                                <AlertDescription>Check your inbox to access it.</AlertDescription>
                             </Alert>
                         )}
 
@@ -51,7 +51,7 @@ export function LoginForm() {
 
                         <Button type="submit" className="w-full">
                             {pending && <Loader className="animate-spin" />}
-                            Login
+                            Log In
                         </Button>
                     </div>
                 </form>

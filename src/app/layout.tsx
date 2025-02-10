@@ -3,8 +3,8 @@ import "./globals.css";
 import { Header } from "@/components/header";
 
 export const metadata: Metadata = {
-  title: "Amigo Secreto",
-  description: "Crie grupos e faça o seu amigo secreto mais divertido!",
+  title: "Secret Santa",
+  description: "Create group and make your Secret Santa even more fun!",
 };
 
 export default function RootLayout({
@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="pt-br">
+    <html lang="en">
       <body className="bg-gray-50">
         <Header />
         {children}
