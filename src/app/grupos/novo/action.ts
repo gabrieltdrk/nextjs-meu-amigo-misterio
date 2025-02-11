@@ -23,8 +23,14 @@ export async function CreateGroup(
 
     const names = formData.getAll("name");
     const emails = formData.getAll("email");
-    const groupName = formData.get("group-name")
+    const groupName = formData.get("group-name");
 
+    console.log("Nomes:", names);
+    console.log("Emails:", emails);
+    console.log("Nome do grupo:", groupName);
+
+
+    // Criação de grupo
     const { data: newGroup, error } = await supabase.from("groups").insert({
         name: groupName,
         owner_id: authUser?.user.id
@@ -43,10 +49,12 @@ export async function CreateGroup(
         email: emails[index]
     }));
 
-    // Participants
-    const { data: createdParticipants, error: errorParticipants } = await supabase.from("participants")
+    const { data: createdParticipants, error: errorParticipants } = await supabase
+        .from("participants")
         .insert(participants)
         .select()
+
+    console.log(errorParticipants)
 
     if (errorParticipants) {
         return {
@@ -57,7 +65,9 @@ export async function CreateGroup(
 
     const drawnParticipants = drawGroup(createdParticipants)
 
-    const {error: errorDrawn } = await supabase.from("participants").upsert(drawnParticipants)
+    const { error: errorDrawn } = await supabase
+        .from("participants")
+        .upsert(drawnParticipants)
 
     if (errorDrawn) {
         return {
@@ -88,7 +98,7 @@ function drawGroup(participants: Participant[]) {
         const assignedParticipant = availableParticipants[Math.floor(Math.random() * availableParticipants.length)]
 
         selectedParticipants.push(assignedParticipant.id)
-        
+
         return {
             ...participant,
             assigned_to: assignedParticipant.id

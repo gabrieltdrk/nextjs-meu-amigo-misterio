@@ -18,9 +18,9 @@ interface Participant {
 export function NewGroupForm({ loggedUser }: { loggedUser: { id: string, email: string } }) {
     const { toast } = useToast();
     const [participants, setParticipants] = useState<Participant[]>([
-        { name: '', email: loggedUser.email }
+        { name: "", email: loggedUser.email },
     ])
-    const [groupName, setGroupName] = useState<string>("")
+    const [groupName, setGroupName] = useState("")
 
     const [state, formAction, pending] = useActionState<CreateGroupState, FormData>(CreateGroup, {
         success: null,
@@ -31,7 +31,7 @@ export function NewGroupForm({ loggedUser }: { loggedUser: { id: string, email: 
         const updatedParticipants = [...participants];
 
         updatedParticipants[index][field] = value
-
+        console.log(updatedParticipants)
         setParticipants(updatedParticipants)
     }
 
@@ -77,7 +77,13 @@ export function NewGroupForm({ loggedUser }: { loggedUser: { id: string, email: 
                         <div key={index} className="flex flex-col md:flex-row items-end space-y-4 md:space-y-0 md:space-x-4">
                             <div className="flex-grow space-y-2 w-full">
                                 <Label htmlFor={`name-${index}`}>Nome</Label>
-                                <Input id={`name-${index}`} name="name" value={participant.name} placeholder="Digite o nome do amigo..." required onChange={(e) => {
+                                <Input 
+                                    id={`name-${index}`} 
+                                    name="name" 
+                                    value={participant.name} 
+                                    placeholder="Digite o nome do amigo..." 
+                                    required 
+                                    onChange={(e) => {
                                     updateParticipant(index, "name", e.target.value)
                                 }} />
                             </div>
@@ -90,8 +96,7 @@ export function NewGroupForm({ loggedUser }: { loggedUser: { id: string, email: 
                                     type="email"
                                     placeholder="Digite o e-mail do amigo..."
                                     required
-                                    disabled={participant.email === loggedUser.email}
-                                    // readOnly={participant.email === loggedUser.email} 
+                                    readOnly={participant.email === loggedUser.email} 
                                     onChange={(e) => {
                                         updateParticipant(index, "email", e.target.value)
                                     }} />
