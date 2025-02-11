@@ -4,8 +4,8 @@ import { Header } from "@/components/header";
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: "Secret Santa",
-  description: "Create group and make your Secret Santa even more fun!",
+  title: "Meu Amigo Mistério",
+  description: "Sorteador de amigo secreto - Faça do seu amigo secreto ainda mais divertido!",
 };
 
 export default function RootLayout({
@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en">
+    <html lang="pt-br">
       <body className="bg-gray-50">
         <Header />
         {children}

@@ -1,5 +1,4 @@
 import { createClient } from "@/utils/supabase/client";
-import { group } from "console";
 import { redirect } from "next/navigation";
 
 export type CreateGroupState = {
@@ -18,7 +17,7 @@ export async function CreateGroup(
     if (authError) {
         return {
             success: false,
-            message: "Error during group creation!"
+            message: "Erro durante a criação do grupo."
         }
     }
 
@@ -34,7 +33,7 @@ export async function CreateGroup(
     if (error) {
         return {
             success: false,
-            message: "Error creating group, please try again."
+            message: "Erro ao criar grupo, por favor, tente novamente."
         }
     }
 
@@ -52,7 +51,7 @@ export async function CreateGroup(
     if (errorParticipants) {
         return {
             success: false,
-            message: "Error adding friends into group, please try again."
+            message: "Erro ao adicionar amigos no grupo, por favor, tente novamente."
         }
     }
 
@@ -63,11 +62,11 @@ export async function CreateGroup(
     if (errorDrawn) {
         return {
             success: false,
-            message: "Error drawing friends from group, please try again."
+            message: "Erro ao embaralhar amigos no grupo, por favor, tente novamente."
         }
     }
 
-    redirect(`/groups/${newGroup.id}`)
+    redirect(`/grupos/${newGroup.id}`)
 }
 
 type Participant = {
