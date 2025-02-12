@@ -1,5 +1,6 @@
 import { createClient } from "@/utils/supabase/client";
 import { redirect } from "next/navigation";
+import { Resend } from "resend";
 
 export type CreateGroupState = {
     success: null | boolean;
@@ -69,6 +70,16 @@ export async function CreateGroup(
         }
     }
 
+    const { error: errorResend } = await sendEmailsToParticipants(drawnParticipants, groupName as string) || {};
+
+
+    if (errorResend) {
+        return {
+            success: false,
+            message: errorResend
+        }
+    }
+
     redirect(`/grupos/${newGroup.id}`)
 }
 
@@ -76,6 +87,7 @@ type Participant = {
     id: string;
     group_id: string;
     name: string;
+    email: string;
     assigned_to: string | null
     created_at: string
 
@@ -97,4 +109,27 @@ function drawGroup(participants: Participant[]) {
             assigned_to: assignedParticipant.id
         }
     })
+}
+
+async function sendEmailsToParticipants(participants: Participant[], groupName: string) {
+    const resend = new Resend(`${process.env.API_URL}`);
+
+    try {
+        await Promise.all(
+            participants.map((participant) =>
+                resend.emails.send({
+                    from: "send@gabrieltdrk.com.br",
+                    to: participant.email,
+                    subject: `Meu Amigo Mistério - Grupo ${groupName}`,
+                    html: `<p>O grupo ${groupName} escolheu você para participar do Meu Amigo Mistério!
+                    <br />
+                    <br />
+                    O seu amigo mistério, é: <strong>${participants.find(p => p.id === participant.assigned_to)?.name}!</strong>
+                    </p>`
+                })
+            )
+        );
+    } catch {
+        return { error: "Ocorreu um erro ao enviar os e-mails" };
+    }
 }
