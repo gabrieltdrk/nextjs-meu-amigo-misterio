@@ -25,11 +25,6 @@ export async function CreateGroup(
     const emails = formData.getAll("email");
     const groupName = formData.get("group-name");
 
-    console.log("Nomes:", names);
-    console.log("Emails:", emails);
-    console.log("Nome do grupo:", groupName);
-
-
     // Criação de grupo
     const { data: newGroup, error } = await supabase.from("groups").insert({
         name: groupName,
@@ -53,8 +48,6 @@ export async function CreateGroup(
         .from("participants")
         .insert(participants)
         .select()
-
-    console.log(errorParticipants)
 
     if (errorParticipants) {
         return {

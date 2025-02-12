@@ -31,7 +31,6 @@ export function NewGroupForm({ loggedUser }: { loggedUser: { id: string, email: 
         const updatedParticipants = [...participants];
 
         updatedParticipants[index][field] = value
-        console.log(updatedParticipants)
         setParticipants(updatedParticipants)
     }
 

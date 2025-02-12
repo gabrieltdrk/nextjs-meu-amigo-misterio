@@ -23,9 +23,10 @@ export function LoginForm() {
 
             <Card className="flex flex-col mx-auto max-w-2xl">
                 <CardHeader>
-                    <CardTitle className="text-2xl text-center">Meu Amigo Mistério | Sorteador de Amigo Secreto</CardTitle>
+                    <CardTitle className="text-2xl text-center text-orange-600 font-bold">Meu Amigo Mistério</CardTitle>
                     <CardDescription className="flex flex-col gap-2">
-                        Com o app Meu Amigo Mistério, é possível criar grupos de amigos e realizar sorteios virtuais, recebendo tudo em seu email. Fica fácil se conectar com seus amigos 😀
+                        <span className="text-black">Com o Meu Amigo Mistério, é possível criar grupos de amigos e realizar sorteios virtuais para seu amigo secreto e recebendo tudo em seu e-mail.</span>
+                        <span className="text-orange-600 font-bold">Fica ainda mais fácil se conectar com seus amigos!!! 😀</span>
                     </CardDescription>
                 </CardHeader>
                 
@@ -34,9 +35,9 @@ export function LoginForm() {
 
             <Card className="flex flex-col mx-auto max-w-2xl">
                 <CardHeader>
-                    <CardTitle className="text-2xl text-center"> Login </CardTitle>
+                    <CardTitle className="text-2xl text-center text-orange-600 font-bold"> Login </CardTitle>
                     <CardDescription className="">
-                        Você receberá um link na caixa de entrada do seu endereço de e-mail, que permitirá se logar em nossa plataforma.
+                        <span className="text-black">Você receberá um link na caixa de entrada do seu endereço de e-mail, que permitirá se logar em nossa plataforma.</span>
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -62,7 +63,7 @@ export function LoginForm() {
                                 </Alert>
                             )}
 
-                            <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-500">
+                            <Button type="submit" className="w-full bg-orange-500 hover:bg-orange-400">
                                 {pending && <Loader className="animate-spin" />}
                                 Logar
                             </Button>
