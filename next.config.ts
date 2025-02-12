@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  assetPrefix: isDev ? undefined : 'https://nextjs-secret-santa.vercel.app'
+  assetPrefix: isDev ? undefined : `${process.env.VERCEL_ASSETPREFIX}`
 };
 
 export default nextConfig;
