@@ -23,14 +23,14 @@ export function Header() {
                         <span className="border border-black h-8 select-none" />
                         <nav className={`${isHome ? 'hidden' : 'flex items-center gap-4'}`}>
                             <Link
-                                href="/meus-grupos"
+                                href="/grupos"
                                 className="bg-orange-700 hover:bg-orange-800 text-white font-semibold py-2 px-4 rounded-full transition duration-300 inline-flex items-center"
                             >
                                 <Users className="w-4 h-4 mr-2" />
                                 Meus Grupos
                             </Link>
                             <Link
-                                href="/novo-grupo"
+                                href="/grupos/novo"
                                 className="bg-orange-700 hover:bg-orange-800 text-white font-semibold py-2 px-4 rounded-full transition duration-300 inline-flex items-center"
                             >
                                 <PlusCircle className="w-4 h-4 mr-2" />
