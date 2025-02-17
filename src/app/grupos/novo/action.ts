@@ -112,7 +112,7 @@ function drawGroup(participants: Participant[]) {
 }
 
 async function sendEmailsToParticipants(participants: Participant[], groupName: string) {
-    const resend = new Resend(`${process.env.API_URL}`);
+    const resend = new Resend(`${process.env.RESEND_API_KEY}`);
 
     try {
         await Promise.all(
