@@ -19,32 +19,19 @@ export function LoginForm() {
     )
 
     return (
-        <div className="flex flex-col gap-2">
-
-            <Card className="flex flex-col mx-auto max-w-2xl">
+        <div className="flex flex-col">
+            <Card className="flex flex-col mx-auto max-w-xl bg-white shadow-md">
                 <CardHeader>
-                    <CardTitle className="text-2xl text-center text-orange-600 font-bold">Meu Amigo Mistério</CardTitle>
-                    <CardDescription className="flex flex-col gap-2">
-                        <span className="text-black">Com o Meu Amigo Mistério, é possível criar grupos de amigos e realizar sorteios virtuais para seu amigo secreto e recebendo tudo em seu e-mail.</span>
-                        <span className="text-orange-600 font-bold">Fica ainda mais fácil se conectar com seus amigos!!! 😀</span>
-                    </CardDescription>
-                </CardHeader>
-                
-
-            </Card>
-
-            <Card className="flex flex-col mx-auto max-w-2xl">
-                <CardHeader>
-                    <CardTitle className="text-2xl text-center text-orange-600 font-bold"> Login </CardTitle>
+                    <CardTitle className="text-2xl text-center text-orange-700 font-bold"> Login </CardTitle>
                     <CardDescription className="">
-                        <span className="text-black">Você receberá um link na caixa de entrada do seu endereço de e-mail, que permitirá se logar em nossa plataforma.</span>
+                        <span className="text-orange-600">Você receberá um link na caixa de entrada do seu endereço de e-mail, que permitirá se logar em nossa plataforma.</span>
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
                     <form action={formAction}>
                         <div className="grid gap-4">
                             <div className="grid gap-2">
-                                <Label htmlFor="email">Email</Label>
+                                <Label htmlFor="email" className="text-orange-700 font-bold">Email</Label>
                                 <Input id="email" type="email" name="email" placeholder="Digite o seu e-mail..." required></Input>
 
                             </div>
@@ -63,7 +50,7 @@ export function LoginForm() {
                                 </Alert>
                             )}
 
-                            <Button type="submit" className="w-full bg-orange-500 hover:bg-orange-400">
+                            <Button type="submit" className="w-full bg-orange-500 hover:bg-orange-600">
                                 {pending && <Loader className="animate-spin" />}
                                 Logar
                             </Button>

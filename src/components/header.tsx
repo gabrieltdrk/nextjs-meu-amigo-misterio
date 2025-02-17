@@ -1,36 +1,49 @@
 'use client'
 
-import { Gift } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Gift, LogOut, PlusCircle, Users } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { signOut } from "@/app/(auth)/login/actions";
-import { usePathname } from 'next/navigation'
 
 export function Header() {
+
     const pathname = usePathname();
+    const isHome = pathname === '/login' ? true : false
 
     return (
-        <header className={`${pathname !== '/login' ? "border-b" : 'hidden'}`}>
-            <div className="container mx-auto p-4">
+        <header className="border-b bg-orange-500 p-3 text-white">
+            <div className="flex flex-col">
                 <div className="flex justify-between">
                     <div className="flex items-center gap-4">
-                        <Link href="/" className="text-2xl font-bold flex items-center gap-2">
-                            <Gift className="h-6 w-6 text-red-400 hover:h-7 hover:w-7 transition-all" />
+                        <Link href="/" className="text-2xl font-bold flex items-center gap-2 hover:animate-pulse">
+                            <Gift className="h-6 w-6 text-white" />
                             <span>Meu Amigo Mistério</span>
                         </Link>
                         <span className="border border-black h-8 select-none" />
-                        <nav className="flex items-center gap-4">
-                            <Button asChild className="variant bg-blue-600 rounded-md hover:bg-blue-500" >
-                                <Link href="/grupos">Meus Grupos</Link>
-                            </Button>
-                            <Button asChild className="variant bg-blue-600 rounded-md hover:bg-blue-500" >
-                                <Link href="/grupos/novo">Novo Grupo</Link>
-                            </Button>
+                        <nav className={`${isHome ? 'hidden' : 'flex items-center gap-4'}`}>
+                            <Link
+                                href="/meus-grupos"
+                                className="bg-orange-700 hover:bg-orange-800 text-white font-semibold py-2 px-4 rounded-full transition duration-300 inline-flex items-center"
+                            >
+                                <Users className="w-4 h-4 mr-2" />
+                                Meus Grupos
+                            </Link>
+                            <Link
+                                href="/novo-grupo"
+                                className="bg-orange-700 hover:bg-orange-800 text-white font-semibold py-2 px-4 rounded-full transition duration-300 inline-flex items-center"
+                            >
+                                <PlusCircle className="w-4 h-4 mr-2" />
+                                Novo Grupo
+                            </Link>
                         </nav>
 
                     </div>
-                    <nav>
-                        <Button onClick={signOut} className="variant bg-blue-600 rounded-sm hover:bg-blue-500">Sair</Button>
+                    <nav className={`${isHome ? 'hidden' : 'flex items-center gap-4'}`}>
+                        <Button onClick={signOut} className="bg-orange-700 hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded-full transition duration-300 inline-flex items-center">
+                            <LogOut className="w-4 h-4" />
+                            Sair
+                        </Button>
                     </nav>
 
                 </div>
