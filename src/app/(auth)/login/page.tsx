@@ -1,6 +1,5 @@
 import { LoginForm } from "@/components/login-form";
 import Image from 'next/image'
-import homepage from '@/public/homepage.jpg'
 
 
 export default function LoginPage() {
@@ -10,7 +9,7 @@ export default function LoginPage() {
                 className="rounded-lg"
                 width='400'
                 height='400'
-                src={homepage}
+                src="/homepage.jpg"
                 alt="Teste"
                 />
             <LoginForm />

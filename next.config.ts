@@ -1,13 +1,11 @@
 import type { NextConfig } from "next";
 
-const isDev = `${process.env.DEV_MODE}`
-
 const nextConfig: NextConfig = {
-  basePath: '',
+  basePath: "",
   eslint: {
     ignoreDuringBuilds: true,
   },
-  assetPrefix: isDev ? undefined : `${process.env.VERCEL_ASSETPREFIX}`
+  assetPrefix: "https://meu-amigo-misterio.vercel.app",
 };
 
 export default nextConfig;
