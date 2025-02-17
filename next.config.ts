@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // assetPrefix: "https://meu-amigo-misterio.vercel.app",
+  assetPrefix: "https://meu-amigo-misterio.vercel.app",
 };
 
 export default nextConfig;
