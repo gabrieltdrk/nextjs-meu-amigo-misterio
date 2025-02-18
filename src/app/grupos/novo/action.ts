@@ -118,7 +118,7 @@ async function sendEmailsToParticipants(participants: Participant[], groupName: 
         await Promise.all(
             participants.map((participant) =>
                 resend.emails.send({
-                    from: "send@gabrieltdrk.com.br",
+                    from: 'Meu Amigo Mistério <meuamigomisterio@gabrieltdrk.com.br>',
                     to: participant.email,
                     subject: `Meu Amigo Mistério - Grupo ${groupName}`,
                     html: `<p>O grupo ${groupName} escolheu você para participar do Meu Amigo Mistério!
@@ -129,7 +129,8 @@ async function sendEmailsToParticipants(participants: Participant[], groupName: 
                 })
             )
         );
-    } catch {
+    } catch(e) {
+        console.log(e);
         return { error: "Ocorreu um erro ao enviar os e-mails" };
     }
 }
