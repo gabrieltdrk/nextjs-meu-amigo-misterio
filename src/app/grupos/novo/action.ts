@@ -112,11 +112,11 @@ function drawGroup(participants: Participant[]) {
 }
 
 async function sendEmailsToParticipants(participants: Participant[], groupName: string) {
-    const resend = new Resend(`${process.env.RESEND_API_KEY}`);
+    const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
 
     try {
         await Promise.all(
-            participants.map((participant) =>
+            participants.map(participant =>
                 resend.emails.send({
                     from: 'Meu Amigo Mistério <meuamigomisterio@gabrieltdrk.com.br>',
                     to: participant.email,
@@ -130,7 +130,7 @@ async function sendEmailsToParticipants(participants: Participant[], groupName: 
             )
         );
     } catch(e) {
-        console.log(e);
+        console.error("Erro ao enviar e-mails:", e);
         return { error: "Ocorreu um erro ao enviar os e-mails" };
     }
 }
